@@ -23,10 +23,10 @@ class _Persons extends StatelessWidget {
           return ListTile(
               leading: CircleAvatar(
                 radius: 25,
-                backgroundImage: person.icon.image,
+                backgroundImage: null,
               ),
               title: Text(person.name),
-              subtitle: Text(person.address));
+              subtitle: Text(person.birthday.toString()));
         });
   }
 }

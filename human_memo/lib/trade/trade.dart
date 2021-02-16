@@ -14,7 +14,15 @@ class _Body extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-        children: [SizedBox(height: 240), TradeProfileCard()],
+        children: [
+          SizedBox(height: 70),
+          Text(
+            "上スワイプで交換",
+            style: Theme.of(context).textTheme.caption,
+          ),
+          SizedBox(height: 120),
+          TradeProfileCard()
+        ],
       ),
     );
   }

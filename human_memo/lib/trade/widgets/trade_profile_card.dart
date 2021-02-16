@@ -12,7 +12,7 @@ class TradeProfileCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              children: [_Standard(), SizedBox(height: 32)],
+              children: [_Standard(), SizedBox(height: 8), _SNSs()],
             ),
           ),
         ),
@@ -37,7 +37,7 @@ class _Standard extends StatelessWidget {
               style: Theme.of(context).textTheme.headline6,
             ),
             Text(
-              "住所情報???",
+              "動物",
               style: Theme.of(context).textTheme.caption,
             )
           ],
@@ -65,6 +65,37 @@ class _Icon extends StatelessWidget {
           width: 3.0,
         ),
       ),
+    );
+  }
+}
+
+class _SNSs extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        _sns(context, null, null),
+        SizedBox(height: 4),
+        _sns(context, null, null),
+        SizedBox(height: 4),
+        _sns(context, null, null)
+      ],
+    );
+  }
+
+  Widget _sns(BuildContext context, Icon icon, String id) {
+    return Row(
+      children: [
+        Image.network(
+            "https://kuma114.com/wp-content/uploads/Twitter_1588584287.png",
+            width: 20,
+            height: 20),
+        SizedBox(width: 8),
+        Text(
+          "@twitter",
+          style: Theme.of(context).textTheme.subtitle1,
+        )
+      ],
     );
   }
 }

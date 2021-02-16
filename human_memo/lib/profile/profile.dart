@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:human_memo/profile/profile_view_model.dart';
+import 'package:human_memo/profile/widgets/profile_body.dart';
 import 'package:human_memo/profile/widgets/profile_header.dart';
-import 'package:human_memo/profile/widgets/profile_standard.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
@@ -21,7 +21,7 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: [ProfileHeader(), ProfileStandard()],
+        children: [ProfileHeader(), ProfileBody()],
       ),
     );
   }
