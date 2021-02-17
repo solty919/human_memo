@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:human_memo/common/extensions/datetime_formatter.dart';
 import 'package:human_memo/common/strings.dart';
-import 'package:human_memo/models/person.dart';
 import 'package:human_memo/profile/profile_view_model.dart';
+import 'package:human_memo/profile/widgets/profile_sns.dart';
 import 'package:provider/provider.dart';
 
 class ProfileBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _isEdit =
+        context.select<ProfileViewModel, bool>((model) => model.isEdit);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -18,7 +20,7 @@ class ProfileBody extends StatelessWidget {
           SizedBox(height: 14),
           _Job(),
           SizedBox(height: 14),
-          _SNS(),
+          SNSCollection(),
           _Edit(),
         ],
       ),
@@ -93,79 +95,6 @@ class _Job extends StatelessWidget {
             "${context.select<ProfileViewModel, String>((model) => model.person.job)}",
             style: Theme.of(context).textTheme.bodyText1),
       ],
-    );
-  }
-}
-
-class _SNS extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    SNS _sns = context.watch<ProfileViewModel>().person.sns;
-
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          _snsRow(
-              context: context,
-              image: Image.asset("images/twitter_icon.png"),
-              id: _sns.twitter,
-              onChange: (value) => print("")),
-          SizedBox(height: 8),
-          _snsRow(
-              context: context,
-              image: Image.asset("images/instagram_icon.png"),
-              id: _sns.instagram,
-              onChange: (value) => print("")),
-          SizedBox(height: 8),
-          _snsRow(
-              context: context,
-              image: Image.asset("images/facebook_icon.png"),
-              id: _sns.faceBook,
-              onChange: (value) => print("")),
-          SizedBox(height: 8),
-          _snsRow(
-              context: context,
-              image: Image.asset("images/tiktok_icon.png"),
-              id: _sns.tiktok,
-              onChange: (value) => print(""))
-        ],
-      ),
-    );
-  }
-
-  Widget _snsRow(
-      {BuildContext context,
-      Image image,
-      String id,
-      void Function(bool) onChange}) {
-    bool isEdit =
-        context.select<ProfileViewModel, bool>((model) => model.isEdit);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(999),
-          child: SizedBox(width: 30, height: 30, child: image),
-        ),
-        SizedBox(width: 20),
-        isEdit
-            ? _textFiled()
-            : Text(
-                id == null ? "" : id,
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-        SizedBox(width: 8),
-        isEdit ? Switch(value: false, onChanged: onChange) : SizedBox()
-      ],
-    );
-  }
-
-  Widget _textFiled() {
-    return Flexible(
-      child: TextField(
-        onChanged: (text) {},
-      ),
     );
   }
 }
