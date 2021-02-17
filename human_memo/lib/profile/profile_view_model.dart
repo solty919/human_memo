@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:human_memo/models/person.dart';
 
 class ProfileViewModel with ChangeNotifier {
+  bool isEdit = false;
+
   Person person = Person()
     ..mine = true
     ..image = null
@@ -10,6 +12,11 @@ class ProfileViewModel with ChangeNotifier {
     ..birthday = DateTime(1994, 9, 19)
     ..job = "Mobile App Engineer"
     ..sns = SNS();
+
+  void setEdit(bool isEdit) {
+    this.isEdit = isEdit;
+    notifyListeners();
+  }
 
   void setMine(bool mine) {
     this.person.mine = mine;

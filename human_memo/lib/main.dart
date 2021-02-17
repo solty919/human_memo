@@ -13,10 +13,14 @@ class HumanMemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme:
-          ThemeData(primarySwatch: Colors.green, brightness: Brightness.light),
-      darkTheme:
-          ThemeData(primarySwatch: Colors.green, brightness: Brightness.dark),
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        brightness: Brightness.light,
+      ),
+      darkTheme: ThemeData(
+        primarySwatch: Colors.green,
+        brightness: Brightness.dark,
+      ),
       home: BottomNavigation(),
     );
   }
