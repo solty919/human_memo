@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:human_memo/common/strings.dart';
 import 'package:human_memo/diagram/diagram.dart';
+import 'package:human_memo/main_view_model.dart';
 import 'package:human_memo/persons/persons.dart';
+import 'package:human_memo/persons/widgets/persons_search.dart';
 import 'package:human_memo/profile/profile.dart';
 import 'package:human_memo/trade/trade.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(HumanMemo());
+  runApp(ChangeNotifierProvider(
+      create: (_) => MainViewModel(), child: HumanMemo()));
 }
 
 class HumanMemo extends StatelessWidget {
@@ -45,11 +49,24 @@ class _BottomNavigationState extends State<BottomNavigation> {
   ];
 
   void _onTap(int index) => setState(() => this._index = index);
+  void _onFilterButtonTap() {
+    final _model = context.read<MainViewModel>();
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) => PersonsSearch());
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          _index == 1
+              ? IconButton(
+                  icon: Icon(Icons.filter_alt), onPressed: _onFilterButtonTap)
+              : SizedBox()
+        ],
         title: Text(
           _items.elementAt(_index).label,
         ),

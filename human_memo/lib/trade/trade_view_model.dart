@@ -12,7 +12,8 @@ class TradeViewModel with ChangeNotifier {
 
   Person person = Person()
     ..mine = true
-    ..image = Image.asset("images/twitter_icon.png", fit: BoxFit.fitWidth)
+    ..image =
+        null //Image.asset("images/twitter_icon.png", fit: BoxFit.fitWidth)
     ..backImage = Image.asset("images/twitter_icon.png", fit: BoxFit.fitWidth)
     ..name = "きりん"
     ..birthday = DateTime(1994, 9, 19)
