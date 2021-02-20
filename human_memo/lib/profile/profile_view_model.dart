@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:human_memo/common/image_path.dart';
 import 'package:human_memo/models/person.dart';
 
 class ProfileViewModel with ChangeNotifier {
@@ -7,8 +8,8 @@ class ProfileViewModel with ChangeNotifier {
   Person person = Person()
     ..mine = true
     ..image = null
-    ..backImage = Image.asset("images/twitter_icon.png", fit: BoxFit.fitWidth)
-    ..name = "きりんさん"
+    ..backImage = Image.asset(ImagePath.twitter, fit: BoxFit.fitWidth)
+    ..name = "きりん"
     ..birthday = DateTime(1994, 9, 19)
     ..job = "Mobile App Engineer"
     ..sns = SNS();

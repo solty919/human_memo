@@ -32,10 +32,16 @@ dependencies:
   cupertino_icons: ^1.0.0
   provider: ^4.3.3
   image_picker: ^0.6.7+22
+  flutter_launcher_icons: ^0.8.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/2.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

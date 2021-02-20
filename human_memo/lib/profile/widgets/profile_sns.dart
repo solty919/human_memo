@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:human_memo/common/image_path.dart';
 import 'package:human_memo/common/widgets/fade_in.dart';
 import 'package:human_memo/models/person.dart';
 import 'package:human_memo/profile/profile_view_model.dart';
@@ -24,41 +25,36 @@ class _EditSNS extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            _row(context, Image.asset("images/twitter_icon.png"), _sns.twitter,
-                (text) {
+            _row(context, Image.asset(ImagePath.twitter), _sns.twitter, (text) {
               _sns.twitter = text;
-              context.read<ProfileViewModel>().setSNS(_sns);
+              context.read<ProfileViewModel>().person.sns = _sns;
             }),
             SizedBox(height: 8),
-            _row(context, Image.asset("images/instagram_icon.png"),
-                _sns.instagram, (text) {
+            _row(context, Image.asset(ImagePath.instagram), _sns.instagram,
+                (text) {
               _sns.instagram = text;
-              context.read<ProfileViewModel>().setSNS(_sns);
+              context.read<ProfileViewModel>().person.sns = _sns;
             }),
             SizedBox(height: 8),
-            _row(
-                context, Image.asset("images/facebook_icon.png"), _sns.faceBook,
+            _row(context, Image.asset(ImagePath.facebook), _sns.faceBook,
                 (text) {
               _sns.faceBook = text;
-              context.read<ProfileViewModel>().setSNS(_sns);
+              context.read<ProfileViewModel>().person.sns = _sns;
             }),
             SizedBox(height: 8),
-            _row(context, Image.asset("images/youtube_icon.png"), _sns.youtube,
-                (text) {
+            _row(context, Image.asset(ImagePath.youtube), _sns.youtube, (text) {
               _sns.youtube = text;
-              context.read<ProfileViewModel>().setSNS(_sns);
+              context.read<ProfileViewModel>().person.sns = _sns;
             }),
             SizedBox(height: 8),
-            _row(context, Image.asset("images/blog_icon.png"), _sns.blog,
-                (text) {
+            _row(context, Image.asset(ImagePath.blog), _sns.blog, (text) {
               _sns.blog = text;
-              context.read<ProfileViewModel>().setSNS(_sns);
+              context.read<ProfileViewModel>().person.sns = _sns;
             }),
             SizedBox(height: 8),
-            _row(context, Image.asset("images/tiktok_icon.png"), _sns.tiktok,
-                (text) {
+            _row(context, Image.asset(ImagePath.tiktok), _sns.tiktok, (text) {
               _sns.tiktok = text;
-              context.read<ProfileViewModel>().setSNS(_sns);
+              context.read<ProfileViewModel>().person.sns = _sns;
             }),
           ],
         ),

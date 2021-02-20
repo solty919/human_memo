@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:human_memo/trade/trade_view_model.dart';
 import 'package:human_memo/trade/widgets/trade_profile_card.dart';
+import 'package:provider/provider.dart';
 
 class Trade extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return _Body();
+    return ChangeNotifierProvider(
+      create: (_) => TradeViewModel(),
+      child: _Body(),
+    );
   }
 }
 

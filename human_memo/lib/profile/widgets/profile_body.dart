@@ -8,18 +8,16 @@ import 'package:provider/provider.dart';
 class ProfileBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _isEdit =
-        context.select<ProfileViewModel, bool>((model) => model.isEdit);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Text("きりん", style: Theme.of(context).textTheme.headline3),
+          _Name(),
           SizedBox(height: 14),
           _Birthday(),
           SizedBox(height: 14),
           _Job(),
-          SizedBox(height: 14),
+          SizedBox(height: 24),
           SNSCollection(),
           _Edit(),
         ],
@@ -28,32 +26,12 @@ class ProfileBody extends StatelessWidget {
   }
 }
 
-class _Edit extends StatelessWidget {
-  void _onTap(BuildContext context) {
-    final _model = context.read<ProfileViewModel>();
-    _model.setEdit(!_model.isEdit);
-  }
-
+class _Name extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _isEdit =
-        context.select<ProfileViewModel, bool>((model) => model.isEdit);
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        _isEdit
-            ? Text(Strings.enterId, style: Theme.of(context).textTheme.caption)
-            : SizedBox(),
-        FlatButton(
-          child: Text(
-            _isEdit ? Strings.save : Strings.edit,
-            style: TextStyle(color: Colors.blueAccent),
-          ),
-          onPressed: () => _onTap(context),
-        )
-      ],
-    );
+    return Text(
+        "${context.select<ProfileViewModel, String>((model) => model.person.name)}",
+        style: Theme.of(context).textTheme.headline3);
   }
 }
 
@@ -94,6 +72,35 @@ class _Job extends StatelessWidget {
         Text(
             "${context.select<ProfileViewModel, String>((model) => model.person.job)}",
             style: Theme.of(context).textTheme.bodyText1),
+      ],
+    );
+  }
+}
+
+class _Edit extends StatelessWidget {
+  void _onTap(BuildContext context) {
+    final _model = context.read<ProfileViewModel>();
+    _model.setEdit(!_model.isEdit);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final _isEdit =
+        context.select<ProfileViewModel, bool>((model) => model.isEdit);
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        _isEdit
+            ? Text(Strings.enterId, style: Theme.of(context).textTheme.caption)
+            : SizedBox(),
+        FlatButton(
+          child: Text(
+            _isEdit ? Strings.save : Strings.edit,
+            style: TextStyle(color: Colors.blueAccent),
+          ),
+          onPressed: () => _onTap(context),
+        )
       ],
     );
   }
