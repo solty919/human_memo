@@ -52,6 +52,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
   void _onFilterButtonTap() {
     final _model = context.read<MainViewModel>();
     showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: const Radius.circular(10),
+                topRight: const Radius.circular(10))),
         isScrollControlled: true,
         context: context,
         builder: (context) => PersonsSearch());

@@ -18,20 +18,13 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      // height: MediaQuery.of(context).size.height / 2,
+    return Container(
       child: Padding(
         padding: EdgeInsets.fromLTRB(
             40, 16, 40, MediaQuery.of(context).viewInsets.bottom),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _title(context),
-            SizedBox(height: 24),
-            _name(context),
-            SizedBox(height: 24),
-            _birthday(context)
-          ],
+        child: Wrap(
+          runSpacing: 24,
+          children: [_title(context), _name(context), _birthday(context)],
         ),
       ),
     );
