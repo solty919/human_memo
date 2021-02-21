@@ -7,10 +7,7 @@ import 'package:provider/provider.dart';
 class Persons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => PersonsViewModel(),
-      child: _Persons(),
-    );
+    return _Persons();
   }
 }
 

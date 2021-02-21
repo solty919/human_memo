@@ -11,11 +11,6 @@ class PersonsSearch extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  void _onChange(BuildContext context, String text) {
-    final search = context.read<MainViewModel>().search;
-    search.name = text;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +19,12 @@ class _Body extends StatelessWidget {
             40, 16, 40, MediaQuery.of(context).viewInsets.bottom),
         child: Wrap(
           runSpacing: 24,
-          children: [_title(context), _name(context), _birthday(context)],
+          children: [
+            _title(context),
+            _name(context),
+            _birthday(context),
+            SizedBox(height: 80)
+          ],
         ),
       ),
     );
@@ -38,6 +38,11 @@ class _Body extends StatelessWidget {
   }
 
   Widget _name(BuildContext context) {
+    void _onChange(BuildContext context, String text) {
+      final search = context.read<MainViewModel>().search;
+      search.name = text;
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

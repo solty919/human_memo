@@ -3,14 +3,22 @@ import 'package:human_memo/common/strings.dart';
 import 'package:human_memo/diagram/diagram.dart';
 import 'package:human_memo/main_view_model.dart';
 import 'package:human_memo/persons/persons.dart';
+import 'package:human_memo/persons/persons_view_model.dart';
 import 'package:human_memo/persons/widgets/persons_search.dart';
 import 'package:human_memo/profile/profile.dart';
 import 'package:human_memo/trade/trade.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-      create: (_) => MainViewModel(), child: HumanMemo()));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MainViewModel()),
+        ChangeNotifierProvider(create: (_) => PersonsViewModel()),
+      ],
+      child: HumanMemo(),
+    ),
+  );
 }
 
 class HumanMemo extends StatelessWidget {
@@ -50,7 +58,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   void _onTap(int index) => setState(() => this._index = index);
   void _onFilterButtonTap() {
-    final _model = context.read<MainViewModel>();
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -59,6 +66,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
         isScrollControlled: true,
         context: context,
         builder: (context) => PersonsSearch());
+  }
+
+  void _floatingButtonTap(BuildContext context) {
+    context.read<PersonsViewModel>().addPerson();
   }
 
   @override
@@ -82,6 +93,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
         onTap: _onTap,
         type: BottomNavigationBarType.fixed,
       ),
+      floatingActionButton: _index == 1
+          ? FloatingActionButton(
+              onPressed: () => _floatingButtonTap(context),
+              child: Icon(Icons.add),
+            )
+          : null,
     );
   }
 }

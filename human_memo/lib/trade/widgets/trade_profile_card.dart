@@ -74,10 +74,10 @@ class _Icon extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 3,
-                blurRadius: 3,
-                offset: Offset(0, 2),
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 10,
+                offset: Offset(0, 1),
               ),
             ]),
         child: _image == null
