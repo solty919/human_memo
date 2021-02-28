@@ -16,14 +16,16 @@ class _Body extends StatelessWidget {
     return Container(
       child: Padding(
         padding: EdgeInsets.fromLTRB(
-            40, 16, 40, MediaQuery.of(context).viewInsets.bottom),
-        child: Wrap(
-          runSpacing: 24,
-          children: [
-            _title(context),
-            _name(context),
-            _birthday(context),
-          ],
+            40, 16, 40, MediaQuery.of(context).viewInsets.bottom + 16),
+        child: SafeArea(
+          child: Wrap(
+            runSpacing: 24,
+            children: [
+              _title(context),
+              _name(context),
+              _birthday(context),
+            ],
+          ),
         ),
       ),
     );
