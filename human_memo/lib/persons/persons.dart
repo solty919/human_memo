@@ -16,14 +16,17 @@ class _Persons extends StatelessWidget {
   Widget build(BuildContext context) {
     final _screen = MediaQuery.of(context).size;
     final _aspectRatio = _screen.width / _screen.height;
+    final _filtered = context
+        .select<PersonsViewModel, List<Person>>((model) => model.filtered);
     return GridView.builder(
-        itemCount: context.watch<PersonsViewModel>().persons.length,
+        itemCount: _filtered.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            childAspectRatio: _aspectRatio > 1 ? 1 : _aspectRatio),
+          crossAxisCount: 4,
+          childAspectRatio: _aspectRatio > 1 ? 1 : _aspectRatio,
+        ),
         itemBuilder: (context, index) {
           Person person =
-              context.read<PersonsViewModel>().persons.elementAt(index);
+              context.read<PersonsViewModel>().filtered.elementAt(index);
           return Avatar(person: person);
         });
   }

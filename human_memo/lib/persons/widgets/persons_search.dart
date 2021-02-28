@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:human_memo/common/strings.dart';
-import 'package:human_memo/main_view_model.dart';
+import 'package:human_memo/persons/persons_view_model.dart';
 import 'package:provider/provider.dart';
 
 class PersonsSearch extends StatelessWidget {
@@ -23,7 +23,6 @@ class _Body extends StatelessWidget {
             _title(context),
             _name(context),
             _birthday(context),
-            SizedBox(height: 80)
           ],
         ),
       ),
@@ -39,8 +38,8 @@ class _Body extends StatelessWidget {
 
   Widget _name(BuildContext context) {
     void _onChange(BuildContext context, String text) {
-      final search = context.read<MainViewModel>().search;
-      search.name = text;
+      final _model = context.read<PersonsViewModel>();
+      _model.setSearch(_model.search..name = text);
     }
 
     return Column(
@@ -60,7 +59,7 @@ class _Body extends StatelessWidget {
       ..[0] = "";
 
     void _onChange(BuildContext context, String value) {
-      final model = context.read<MainViewModel>();
+      final model = context.read<PersonsViewModel>();
       model.search.birthday = value;
       model.setSearch(model.search);
     }
@@ -78,7 +77,7 @@ class _Body extends StatelessWidget {
               width: 100,
               child: DropdownButton(
                 isExpanded: true,
-                value: context.watch<MainViewModel>().search.birthday ?? "",
+                value: context.watch<PersonsViewModel>().search.birthday ?? "",
                 items: _month.map((month) {
                   return DropdownMenuItem(value: month, child: Text(month));
                 }).toList(),
